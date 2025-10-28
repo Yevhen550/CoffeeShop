@@ -1,43 +1,24 @@
-import { ROUTES } from "../../navigation/routes";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
-import React, { useContext } from "react";
-import { View, StyleSheet } from "react-native";
+import { useContext } from "react";
+import { StyleSheet, View } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import CustomButton from "../CustomButton/CustomButton";
-import { ThemeContext } from "../../context/ThemeContext";
 import Colors from "../../constants/Colors";
+import { ThemeContext } from "../../context/ThemeContext";
+import { ROUTES } from "../../navigation/routes";
+import CustomButton from "../CustomButton/CustomButton";
 
-export const CustomDrawerContent = (props) => {
+const CustomDrawerContent = (props) => {
   const insets = useSafeAreaInsets();
   const { navigation } = props;
   const { theme } = useContext(ThemeContext);
   const palette = Colors[theme];
 
-  const navigateToLogin = () => {
+  const navigateTo = (route, screen) => {
     navigation.closeDrawer();
-    navigation.getParent()?.navigate(ROUTES.AUTH_STACK, {
-      screen: ROUTES.LOGIN_SCREEN,
-    });
-  };
-
-  const navigateToRegistration = () => {
-    navigation.closeDrawer();
-    navigation.getParent()?.navigate(ROUTES.AUTH_STACK, {
-      screen: ROUTES.REGISTRATION,
-    });
-  };
-
-  const navigateToHome = () => {
-    navigation.navigate(ROUTES.BOTTOM_TABS, { screen: ROUTES.HOME });
-    navigation.closeDrawer();
-  };
-
-  const navigateToProfile = () => {
-    navigation.navigate(ROUTES.BOTTOM_TABS, { screen: ROUTES.PROFILE });
-    navigation.closeDrawer();
+    navigation.getParent()?.navigate(route, { screen });
   };
 
   return (
@@ -53,12 +34,12 @@ export const CustomDrawerContent = (props) => {
           <View style={styles.topButtons}>
             <CustomButton
               title="Login"
-              onPress={navigateToLogin}
+              onPress={() => navigateTo(ROUTES.AUTH_STACK, ROUTES.LOGIN_SCREEN)}
               theme={theme}
             />
             <CustomButton
               title="Registration"
-              onPress={navigateToRegistration}
+              onPress={() => navigateTo(ROUTES.AUTH_STACK, ROUTES.REGISTRATION)}
               theme={theme}
             />
           </View>
@@ -70,10 +51,14 @@ export const CustomDrawerContent = (props) => {
           >
             <CustomButton
               title="Profile"
-              onPress={navigateToProfile}
+              onPress={() => navigateTo(ROUTES.BOTTOM_TABS, ROUTES.PROFILE)}
               theme={theme}
             />
-            <CustomButton title="Home" onPress={navigateToHome} theme={theme} />
+            <CustomButton
+              title="Home"
+              onPress={() => navigateTo(ROUTES.BOTTOM_TABS, ROUTES.HOME)}
+              theme={theme}
+            />
           </View>
         </View>
       </DrawerContentScrollView>

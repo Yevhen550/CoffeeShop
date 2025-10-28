@@ -1,23 +1,39 @@
-import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { ROUTES } from "./routes";
-import BottomTabs from "./BottomTabs";
-import SettingsScreen from "../screens/SettingsScreen";
+import CustomDrawerContent from "../components/CustomDrawerContent/CustomDrawerContent";
+import CustomHeader from "../components/CustomHeader/CustomHeader";
 import Colors from "../constants/Colors";
-import { CustomDrawerContent } from "../components/CustomDrawerContent/CustomDrawerContent";
+import SettingsScreen from "../screens/SettingsScreen";
+import BottomTabs from "./BottomTabs";
+import { ROUTES } from "./routes";
 
 const Drawer = createDrawerNavigator();
 
 const MainNavigator = () => {
   return (
     <Drawer.Navigator
-      screenOptions={drawerScreenOptions}
+      screenOptions={{
+        header: () => <CustomHeader />, // ✅ Додаємо кастомний хедер саме тут
+        drawerStyle: {
+          backgroundColor: Colors.primary,
+          width: "85%",
+        },
+        drawerActiveTintColor: Colors.secondary,
+        drawerInactiveTintColor: Colors.white,
+        drawerLabelStyle: {
+          fontSize: 16,
+          fontWeight: "bold",
+        },
+        drawerContentStyle: {
+          paddingVertical: 20,
+          paddingHorizontal: 30,
+        },
+      }}
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
       <Drawer.Screen
         name={ROUTES.BOTTOM_TABS}
         component={BottomTabs}
-        options={{ headerShown: false, title: "Головна" }}
+        options={{ title: "Головна" }}
       />
       <Drawer.Screen
         name={ROUTES.SETTINGS}
@@ -26,31 +42,6 @@ const MainNavigator = () => {
       />
     </Drawer.Navigator>
   );
-};
-
-const drawerScreenOptions = {
-  headerShown: true,
-  headerStyle: {
-    backgroundColor: Colors.primary,
-  },
-  headerTintColor: Colors.white,
-  headerTitleStyle: {
-    fontWeight: "bold",
-  },
-  drawerStyle: {
-    backgroundColor: Colors.primary,
-    width: "85%",
-  },
-  drawerActiveTintColor: Colors.secondary,
-  drawerInactiveTintColor: Colors.white,
-  drawerLabelStyle: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  drawerContentStyle: {
-    paddingVertical: 20,
-    paddingHorizontal: 30,
-  },
 };
 
 export default MainNavigator;

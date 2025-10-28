@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import { View, TouchableOpacity, StyleSheet, Switch } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation, DrawerActions } from "@react-navigation/native";
-import { ThemeContext } from "../../context/ThemeContext";
+import { DrawerActions, useNavigation } from "@react-navigation/native";
+import { useContext } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Colors from "../../constants/Colors";
+import { ThemeContext } from "../../context/ThemeContext";
 import ThemedHeader from "../ThemedHeader/ThemedHeader";
 
 const CustomHeader = ({ showBack }) => {
   const navigation = useNavigation();
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const palette = Colors[theme];
 
   return (
@@ -26,16 +26,6 @@ const CustomHeader = ({ showBack }) => {
           </TouchableOpacity>
         )}
       </View>
-
-      <Switch
-        value={theme === "dark"}
-        onValueChange={toggleTheme}
-        trackColor={{
-          false: palette.switchTrack,
-          true: palette.primary,
-        }}
-        thumbColor={theme === "dark" ? palette.switchThumb : palette.white}
-      />
     </ThemedHeader>
   );
 };
@@ -44,6 +34,7 @@ const styles = StyleSheet.create({
   leftContainer: {
     flexDirection: "row",
     alignItems: "center",
+    paddingLeft: 16,
   },
 });
 
