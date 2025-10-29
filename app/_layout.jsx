@@ -1,4 +1,3 @@
-// import { NavigationContainer } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "../src/context/ThemeContext";
@@ -12,10 +11,8 @@ export default function App() {
     <Provider store={store}>
       <ThemeProvider>
         <UserProvider>
-          {/* <NavigationContainer> */}
           <RootNavigator />
           <Toast config={toastConfig} />
-          {/* </NavigationContainer> */}
         </UserProvider>
       </ThemeProvider>
     </Provider>

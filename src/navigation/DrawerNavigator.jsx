@@ -12,7 +12,7 @@ const MainNavigator = () => {
   return (
     <Drawer.Navigator
       screenOptions={{
-        header: () => <CustomHeader />, // ✅ Додаємо кастомний хедер саме тут
+        header: () => <CustomHeader />,
         drawerStyle: {
           backgroundColor: Colors.primary,
           width: "85%",

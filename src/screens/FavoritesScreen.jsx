@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { Animated, StyleSheet, Text } from "react-native";
-import { ThemeContext } from "../context/ThemeContext";
 import ThemeSwitcher from "../components/ThemeSwitcher/ThemeSwitcher";
 import Colors from "../constants/Colors";
+import { ThemeContext } from "../context/ThemeContext";
 
 const FavoritesScreen = () => {
   const { theme } = useContext(ThemeContext);
-  const currentColors = Colors[theme];
+  const palette = Colors[theme];
 
   const backgroundAnim = new Animated.Value(theme === "light" ? 0 : 1);
 
@@ -27,8 +27,8 @@ const FavoritesScreen = () => {
     <Animated.View
       style={[styles.container, { backgroundColor: interpolatedBg }]}
     >
-      <Text style={[styles.text, { color: currentColors.text }]}>
-        Вітаю у магазині!
+      <Text style={[styles.text, { color: palette.text }]}>
+        Вітаю у магазині!!!
       </Text>
       <ThemeSwitcher />
     </Animated.View>
