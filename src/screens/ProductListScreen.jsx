@@ -1,20 +1,20 @@
-import { FlatList, StyleSheet, View, Animated } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { useState, useContext, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useContext, useEffect, useState } from "react";
+import { Animated, FlatList, StyleSheet, View } from "react-native";
+import AnimatedBadge from "../components/AnimatedBadge/AnimatedBadge";
 import CustomButton from "../components/CustomButton/CustomButton";
 import ProductCard from "../components/ProductCard/ProductCard";
-import { errorMessageToast } from "../helpers/toastMessages";
-import products from "../store/productsData";
-import { ROUTES } from "../navigation/routes";
 import Colors from "../constants/Colors";
-import AnimatedBadge from "../components/AnimatedBadge/AnimatedBadge";
 import { ThemeContext } from "../context/ThemeContext";
+import { errorMessageToast } from "../helpers/toastMessages";
+import { ROUTES } from "../navigation/routes";
+import products from "../store/productsData";
 
 const ProductListScreen = () => {
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
-  const currentColors = Colors[theme];
+  const palette = Colors[theme];
 
   const [selectedProducts, setSelectedProducts] = useState([]);
 
@@ -68,14 +68,14 @@ const ProductListScreen = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[
           styles.listContent,
-          { backgroundColor: currentColors.background },
+          { backgroundColor: palette.background },
         ]}
       />
       {selectedProducts.length > 0 && (
         <View
           style={[
             styles.buttonContainer,
-            { backgroundColor: currentColors.background },
+            { backgroundColor: palette.background },
           ]}
         >
           <CustomButton title="Додати" onPress={handleBuy} theme={theme}>
@@ -83,7 +83,7 @@ const ProductListScreen = () => {
               <FontAwesome
                 name="shopping-cart"
                 size={24}
-                color={currentColors.white}
+                color={palette.white}
               />
             </AnimatedBadge>
           </CustomButton>

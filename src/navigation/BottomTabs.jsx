@@ -1,33 +1,30 @@
-import React, { useContext } from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useContext } from "react";
 import { StyleSheet } from "react-native";
 import { ROUTES } from "./routes";
 
-import HomeScreen from "../screens/HomeScreen";
-import ProductStackNavigator from "./stack/ProductStack";
-import FavoritesScreen from "../screens/FavoritesScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import CartScreen from "../screens/CartScreen";
 import Colors from "../constants/Colors";
 import { ThemeContext } from "../context/ThemeContext";
+import CartScreen from "../screens/CartScreen";
+import FavoritesScreen from "../screens/FavoritesScreen";
+import HomeScreen from "../screens/HomeScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import ProductStackNavigator from "./stack/ProductStack";
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
   const { theme } = useContext(ThemeContext);
-  const currentColors = Colors[theme];
+  const palette = Colors[theme];
 
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: currentColors.secondary,
-        tabBarInactiveTintColor: currentColors.subText,
-        tabBarStyle: [
-          styles.tabBar,
-          { backgroundColor: currentColors.primary },
-        ],
+        tabBarActiveTintColor: palette.secondary,
+        tabBarInactiveTintColor: palette.subText,
+        tabBarStyle: [styles.tabBar, { backgroundColor: palette.primary }],
       }}
     >
       <Tab.Screen

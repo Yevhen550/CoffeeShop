@@ -1,18 +1,17 @@
-import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { addItem } from "../redux/cartSlice";
-import { View, Text, Image, StyleSheet, FlatList } from "react-native";
 import CustomButton from "../components/CustomButton/CustomButton";
 import Colors from "../constants/Colors";
 import { errorMessageToast } from "../helpers/toastMessages";
 import { ROUTES } from "../navigation/routes";
-import { useNavigation } from "@react-navigation/native";
+import { addItem } from "../redux/cartSlice";
 
 const ProductDetailsScreen = ({ route, theme = "light" }) => {
   const { selectedProducts } = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const currentColors = Colors[theme];
+  const palette = Colors[theme];
 
   const handleBuyAll = () => {
     if (selectedProducts.length > 0) {
@@ -28,17 +27,15 @@ const ProductDetailsScreen = ({ route, theme = "light" }) => {
       style={[
         styles.productContainer,
         {
-          backgroundColor: currentColors.background,
-          shadowColor: currentColors.text,
-          borderColor: currentColors.secondary + "40",
+          backgroundColor: palette.background,
+          shadowColor: palette.text,
+          borderColor: palette.secondary + "40",
         },
       ]}
     >
       <Image source={{ uri: item.imageUrl }} style={styles.image} />
-      <Text style={[styles.title, { color: currentColors.text }]}>
-        {item.title}
-      </Text>
-      <Text style={[styles.price, { color: currentColors.secondary }]}>
+      <Text style={[styles.title, { color: palette.text }]}>{item.title}</Text>
+      <Text style={[styles.price, { color: palette.secondary }]}>
         {item.price} ₴
       </Text>
     </View>
@@ -51,7 +48,7 @@ const ProductDetailsScreen = ({ route, theme = "light" }) => {
       renderItem={renderItem}
       contentContainerStyle={[
         styles.container,
-        { backgroundColor: currentColors.background },
+        { backgroundColor: palette.background },
       ]}
       ListFooterComponent={
         <View style={styles.buttonContainer}>

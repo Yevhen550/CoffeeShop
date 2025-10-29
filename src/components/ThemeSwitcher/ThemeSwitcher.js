@@ -1,23 +1,21 @@
-import React, { useContext } from "react";
-import { View, Switch, StyleSheet } from "react-native";
-import { ThemeContext } from "../../context/ThemeContext";
+import { useContext } from "react";
+import { StyleSheet, Switch, View } from "react-native";
 import Colors from "../../constants/Colors";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const isEnabled = theme === "dark";
-  const currentColors = Colors[theme];
+  const palette = Colors[theme];
 
   return (
     <View style={styles.container}>
       <Switch
         trackColor={{
-          false: currentColors.switchTrack,
-          true: currentColors.primary,
+          false: palette.switchTrack,
+          true: palette.primary,
         }}
-        thumbColor={
-          isEnabled ? currentColors.switchThumb : currentColors.switchThumb
-        }
+        thumbColor={isEnabled ? palette.switchThumb : palette.switchThumb}
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleTheme}
         value={isEnabled}
