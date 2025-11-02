@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { useContext } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 import Colors from "../../constants/Colors";
 import { ThemeContext } from "../../context/ThemeContext";
 
@@ -14,11 +14,9 @@ const PromoBanner = ({ imageSource, text }) => {
         style={[
           styles.offer,
           {
-            color: palette.background,
+            color: palette.white,
             backgroundColor:
-              theme === "light"
-                ? "rgba(235, 115, 35, 0.96)"
-                : "rgba(204, 147, 84, 0.9)",
+              theme === "light" ? palette.secondary : palette.secondary,
           },
         ]}
       >
@@ -35,7 +33,6 @@ const styles = StyleSheet.create({
   banner: {
     width: "100%",
     height: 180,
-    borderRadius: 10,
   },
   offer: {
     position: "absolute",
