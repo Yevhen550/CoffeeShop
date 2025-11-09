@@ -6,5 +6,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "src/constants/Colors.js", "src/constants/platform.js"  ]
+, "src/constants/Colors.js", "src/constants/platform.js", "src/navigation/stack/AuthStack.jsx", "src/screens/ProfileScreen.jsx", "src/screens/WeatherScreen.jsx"  ]
 }

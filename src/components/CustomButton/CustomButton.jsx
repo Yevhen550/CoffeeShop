@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
   Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import Colors from "../../constants/Colors";
@@ -17,10 +17,17 @@ const CustomButton = ({ title, onPress, children }) => {
     <TouchableOpacity
       style={[styles.button, { backgroundColor: palette.secondary }]}
       onPress={onPress}
-      activeOpacity={0.8} 
+      activeOpacity={0.8}
     >
       <View style={styles.content}>
-        <Text style={[styles.text, { color: palette.background }]}>
+        <Text
+          style={[
+            styles.text,
+            {
+              color: theme === "light" ? palette.white : palette.black,
+            },
+          ]}
+        >
           {" "}
           {title}
         </Text>

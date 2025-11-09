@@ -35,11 +35,11 @@ const MainNavigator = () => {
         component={BottomTabs}
         options={{ title: "Головна" }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name={ROUTES.SETTINGS}
         component={SettingsScreen}
         options={{ title: "Налаштування" }}
-      />
+      /> */}
     </Drawer.Navigator>
   );
 };
